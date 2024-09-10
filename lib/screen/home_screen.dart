@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widget/product_card.dart';
+import 'add_product_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text(
           "Klontong",
         ),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -51,7 +53,14 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddProductScreen(),
+            ),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
