@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:klontong/presentation/home/screen/home_screen.dart';
+import 'package:klontong/screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
