@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:klontong/screen/detail_screen.dart';
 
 import '../util/localization_utils.dart';
 
@@ -11,14 +12,12 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => DetailView(
-        //       data: products[index],
-        //     ),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const DetailScreen(),
+          ),
+        );
       },
       child: Card(
         color: Colors.white,
