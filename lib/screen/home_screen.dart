@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final searchC = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.all(12),
             child: TextFormField(
+              controller: searchC,
               decoration: InputDecoration(
                 hintText: "Search",
                 prefixIcon: const Icon(Icons.search),
@@ -62,24 +64,38 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Data Kosong"),
                   );
                 }
-                return GridView.builder(
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ).copyWith(bottom: 80),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 6,
-                    mainAxisSpacing: 6,
-                    mainAxisExtent: 240,
-                  ),
-                  itemBuilder: (context, index) {
-                    return ProductCard(
-                      product: products[index],
-                    );
+                return NotificationListener<ScrollNotification>(
+                  onNotification: (ScrollNotification notification) {
+                    if (searchC.text.isNotEmpty) {
+                      return true;
+                    }
+                    if (notification is ScrollEndNotification &&
+                        notification.metrics.pixels ==
+                            notification.metrics.maxScrollExtent) {
+                      productP.pageSize = productP.pageSize + 10;
+                    }
+                    return true;
                   },
-                  itemCount: products.length,
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ).copyWith(bottom: 80),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 6,
+                      mainAxisSpacing: 6,
+                      mainAxisExtent: 240,
+                    ),
+                    itemBuilder: (context, index) {
+                      return ProductCard(
+                        product: products[index],
+                      );
+                    },
+                    itemCount: products.length,
+                  ),
                 );
               }
               return Skeletonizer(

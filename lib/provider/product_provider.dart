@@ -22,12 +22,25 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  int _pageSize = 10;
+  int get pageSize => _pageSize;
+  set pageSize(int size) {
+    if (_products.length > pageSize) {
+      _pageSize = size;
+    }
+    displayProducts = _products;
+  }
+
   List<Product> _products = [];
   List<Product> _displayProducts = [];
   List<Product> get products => _products;
   List<Product> get displayProducts => _displayProducts;
   set displayProducts(List<Product> products) {
-    _displayProducts = products;
+    if (products.length > pageSize) {
+      _displayProducts = products.sublist(0, pageSize);
+    } else {
+      _displayProducts = products;
+    }
     notifyListeners();
   }
 
@@ -35,6 +48,7 @@ class ProductProvider with ChangeNotifier {
     try {
       productState = ProductState.loading;
       _products = await _productRD.getProducts();
+      pageSize = 10;
       displayProducts = _products;
       productState = ProductState.success;
     } catch (e) {
