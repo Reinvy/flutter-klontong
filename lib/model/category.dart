@@ -7,7 +7,7 @@ String categoryToJson(List<Category> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Category {
-  int id;
+  String id;
   String name;
 
   Category({
@@ -16,12 +16,12 @@ class Category {
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-        id: json["id"],
+        id: json["_id"],
         name: json["name"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "_id": id,
         "name": name,
       };
 }
