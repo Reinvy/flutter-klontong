@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:klontong/util/localization_utils.dart';
 
+import '../model/product.dart';
+
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  const DetailScreen({super.key, required this.product});
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class DetailScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    "https://cf.shopee.co.id/file/7cb930d1bd183a435f4fb3e5cc4a896b",
+                    product.image,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -46,7 +49,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Cemilan",
+                product.categoryName,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSecondary,
                   fontWeight: FontWeight.w500,
@@ -57,14 +60,14 @@ class DetailScreen extends StatelessWidget {
               height: 4,
             ),
             Text(
-              "Ciki ciki",
+              product.name,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              "Ciki Enak" * 8,
+              product.description,
             ),
             Divider(),
             Text(
@@ -75,19 +78,19 @@ class DetailScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "SKU : 123",
+              "SKU : ${product.sku}",
             ),
             Text(
-              "Berat : 400 gram",
+              "Berat : ${product.weight} gram",
             ),
             Text(
-              "Tinggi : 4 cm",
+              "Tinggi : ${product.height} cm",
             ),
             Text(
-              "Lebar : 4 cm",
+              "Lebar : ${product.width} cm",
             ),
             Text(
-              "Panjang : 10 cm",
+              "Panjang : ${product.length} cm",
             ),
             Divider(),
             Text(
@@ -98,7 +101,7 @@ class DetailScreen extends StatelessWidget {
               ),
             ),
             Text(
-              LocalizationUtils.formatRp(40000),
+              LocalizationUtils.formatRp(product.harga),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
