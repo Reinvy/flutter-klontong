@@ -23,7 +23,13 @@ class ProductProvider with ChangeNotifier {
   }
 
   List<Product> _products = [];
-  List<Product> displayProducts = [];
+  List<Product> _displayProducts = [];
+  List<Product> get products => _products;
+  List<Product> get displayProducts => _displayProducts;
+  set displayProducts(List<Product> products) {
+    _displayProducts = products;
+    notifyListeners();
+  }
 
   Future<void> getProducts() async {
     try {
@@ -76,6 +82,17 @@ class ProductProvider with ChangeNotifier {
       getProducts();
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  Future<void> searchProducts(String query) async {
+    if (query.isEmpty) {
+      displayProducts = _products;
+    } else {
+      displayProducts = _products
+          .where((product) =>
+              product.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
     }
   }
 }

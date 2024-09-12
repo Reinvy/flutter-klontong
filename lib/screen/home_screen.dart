@@ -45,6 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+              onChanged: (value) {
+                Provider.of<ProductProvider>(
+                  context,
+                  listen: false,
+                ).searchProducts(value);
+              },
             ),
           ),
           Expanded(
