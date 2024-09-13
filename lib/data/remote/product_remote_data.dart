@@ -26,7 +26,7 @@ class ProductRemoteData {
     }
   }
 
-  Future<void> addProduct({
+  Future<String> addProduct({
     required Category category,
     required String name,
     required String description,
@@ -56,6 +56,7 @@ class ProductRemoteData {
         "$baseUrl/product",
         data: data,
       );
+      return "success";
     } catch (e) {
       debugPrint(e.toString());
       rethrow;
