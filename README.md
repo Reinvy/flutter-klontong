@@ -52,6 +52,8 @@ The product data follows a consistent schema:
 }
 ```
 
+**Note:** The `id` and `categoryId` fields in the schema are of type string rather than integer. This is because the [crudcrud.com](https://crudcrud.com/) API provides IDs in string format only.
+
 ---
 
 ## Firebase Storage
@@ -69,6 +71,20 @@ This project uses the [crudcrud.com](https://crudcrud.com/) API as a mock servic
 1. Open a new **Incognito Mode** browser session.
 2. Visit [crudcrud.com](https://crudcrud.com/).
 3. Generate a new API endpoint and update it in your project.
+
+**Important Note:** When regenerating the API, you will need to create a list of categories before adding products. This can be done using Postman with the following endpoint:
+
+- **Endpoint:** `apibaru/category`
+- **Method:** POST
+- **Body:** JSON format with values like the example below:
+
+```json
+{
+  "name": "Cemilan"
+}
+```
+
+This step is necessary as product data requires category information.
 
 ---
 
