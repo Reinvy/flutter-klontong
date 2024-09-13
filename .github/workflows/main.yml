@@ -1,0 +1,43 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v3
+      with:
+        flutter-version: '3.7.0'  # Ganti dengan versi Flutter yang sesuai
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Run tests
+      run: flutter test
+
+    # - name: Build APK
+    #   run: flutter build apk --release
+    #   env:
+    #     FLUTTER_BUILD_NAME: 1.0.0
+    #     FLUTTER_BUILD_NUMBER: ${{ github.run_number }}
+
+    # - name: Upload build artifacts
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: apk
+    #     path: build/app/outputs/flutter-apk/app-release.apk
+
