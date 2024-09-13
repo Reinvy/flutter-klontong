@@ -74,7 +74,7 @@ This project uses the [crudcrud.com](https://crudcrud.com/) API as a mock servic
 
 **Important Note:** When regenerating the API, you will need to create a list of categories before adding products. This can be done using Postman with the following endpoint:
 
-- **Endpoint:** `apibaru/category`
+- **Endpoint:** `newAPI/category` (`https://crudcrud.com/api/3545058bb29a411fbf8fba294ecac766/category`)
 - **Method:** POST
 - **Body:** JSON format with values like the example below:
 
