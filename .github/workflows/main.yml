@@ -16,12 +16,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Flutter
-      uses: subosito/flutter-action@v3
+      uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.7.0'  # Ganti dengan versi Flutter yang sesuai
+        channel: 'stable'
+        # flutter-version: '3.22.3'  # Ganti dengan versi Flutter yang sesuai
 
     - name: Install dependencies
       run: flutter pub get
