@@ -63,7 +63,7 @@ class ProductProvider with ChangeNotifier {
       return categories;
     } catch (e) {
       debugPrint(e.toString());
-      rethrow;
+      return List.empty();
     }
   }
 
